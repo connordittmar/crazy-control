@@ -10,6 +10,7 @@ class SettingsPanel extends Component {
     super(props);
     this.state = {
       armsignal: false,
+      drone_ids: [],
     };
   }
   ros = new Ros({url:'ws://10.1.1.200:8080'})
@@ -73,7 +74,7 @@ class SettingsPanel extends Component {
     var drone_component_list = [];
     var num_drones = this.state.drone_ids.length;
     for (var i = 0; i < num_drones; i++) {
-      var id = this.state.drone_ids[i]
+      var id = this.state.drone_ids[i];
       drone_component_list.push(
         <DroneBox ros={this.ros} droneid={'crazyflie'+id} armsignal={armsignal}/>
       )

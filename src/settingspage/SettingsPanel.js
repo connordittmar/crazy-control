@@ -51,6 +51,7 @@ class SettingsPanel extends Component {
       }
       old_key = key;
     };
+    drone_ids.sort();
     this.setState({drone_ids: drone_ids});
   }
 

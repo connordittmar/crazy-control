@@ -81,7 +81,7 @@ class DroneBox extends Component<Props,State> {
                 <Checkbox slider onChange={() => this.handleslider()} checked={this.state.armchecked} />
               </Table.Cell>
               <Table.Cell>{this.props.droneid}</Table.Cell>
-                <NonVisSubscriber
+                /*<NonVisSubscriber
                   ros= {this.props.ros}
                   name= {'/' + this.props.droneid + '/battery'}
                   messageType= {'/std_msgs/Float32'}
@@ -90,7 +90,7 @@ class DroneBox extends Component<Props,State> {
                   ros= {this.props.ros}
                   name= {'/' + this.props.droneid + '/rssi'}
                   messageType= {'/std_msgs/Float32'}
-                />
+                />*/
               <Table.Cell></Table.Cell>
               <Table.Cell><Checkbox onChange={() => this.toggleSelected()} checked={this.state.selected}/></Table.Cell>
             </Table.Row>

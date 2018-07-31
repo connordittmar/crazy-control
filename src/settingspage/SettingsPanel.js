@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {Button, Container, Table} from 'semantic-ui-react'
-import {Ros} from 'roslib'
+import {Ros, Service, ServiceRequest} from 'roslib'
 import {Drone} from '../bin/drone'
 import DroneBox from './DroneBox'
 
@@ -13,6 +13,47 @@ class SettingsPanel extends Component {
     };
   }
   ros = new Ros({url:'ws://10.1.1.200:8080'})
+
+  componentDidMount () {
+    var topicsClient = new Service({
+      ros: this.ros,
+      name: '/rosapi/topics',
+      serviceType: 'rosapi/Topics'
+    });
+    var request = new ServiceRequest();
+    topicsClient.callService(request, (result)=>this.populateTable(result.topics));
+  }
+
+  populateTable (topics) {
+    //topics is an array of strings with all ros topics
+    var drone_strings = [];
+    var count = topics.length;
+    topics.sort();
+    //find all drone-related topics
+    for (var i = 0; i < count; i++) {
+      var str = topics[i];
+      var key = str.slice(1,5);
+      if (key == 'craz') {
+        drone_strings.push(str)
+      }
+    }
+    var drone_ids = [];
+    drone_strings.sort();
+    count = drone_strings.length;
+    var old_key = '';
+    //return only unique numbers
+    for (var i = 0; i < count; i++) {
+      var str = topics[i];
+      var key = str.slice(1,12);
+      if (key != old_key) {
+        key = key.replace('/','');
+        key = key.replace('/','');
+        key = key.replace('crazyflie','');
+        drone_ids.push(parseInt(key,10));
+      }
+    };
+    this.setState({drone_ids: drone_ids});
+  }
 
   renderDroneBox (i,armsignal) {
     return <DroneBox ros={this.ros} droneid={'crazyflie'+i} armsignal={armsignal}/>
@@ -29,6 +70,15 @@ class SettingsPanel extends Component {
   render () {
     const armsignal = this.state.armsignal;
     const content = this.state.content;
+    var drone_component_list = [];
+    var num_drones = this.state.drone_ids.length;
+    for (var i = 0; i < num_drones; i++) {
+      var id = this.state.drone_ids[i]
+      drone_component_list.push(
+        <DroneBox ros={this.ros} droneid={'crazyflie'+id} armsignal={armsignal}/>
+      )
+    }
+
     return (
       <div>
       <Table compact celled selectable definition>
@@ -43,11 +93,8 @@ class SettingsPanel extends Component {
           </Table.Row>
         </Table.Header>
         <Table.Body>
+        {drone_component_list}
         {this.renderDroneBox(1,armsignal)}
-        {this.renderDroneBox(2,armsignal)}
-        {this.renderDroneBox(3,armsignal)}
-        {this.renderDroneBox(4,armsignal)}
-        {this.renderDroneBox(5,armsignal)}
         <Table.Row>
           <Table.Cell/>
           <Table.Cell/>

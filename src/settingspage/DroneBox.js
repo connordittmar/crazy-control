@@ -28,11 +28,6 @@ class DroneBox extends Component<Props,State> {
     serviceType: '/uav_control/arm'
   })
 
-  subscriber_battery = new NonVisSubscriber({
-    ros: this.props.ros,
-    name: '/' + this.props.droneid + '/battery',
-    messageType: '/std_msgs/Float32'
-  })
 
   subscriber_status = new NonVisSubscriber({
     ros: this.props.ros,
@@ -115,7 +110,13 @@ class DroneBox extends Component<Props,State> {
                 <Checkbox slider onChange={() => this.handleslider()} checked={this.state.armchecked} />
               </Table.Cell>
               <Table.Cell>{this.props.droneid}</Table.Cell>
-              <Table.Cell>{this.state.battery}</Table.Cell>
+              <Table.Cell>
+              <NonVisSubscriber
+                ros= this.props.ros
+                name= '/' + this.props.droneid + '/battery'
+                messageType= '/std_msgs/Float32'
+                />
+              </Table.Cell>
               <Table.Cell>{this.state.rssi}</Table.Cell>
               <Table.Cell>{this.state.status}</Table.Cell>
               <Table.Cell><Checkbox onChange={() => this.toggleSelected()} checked={this.state.selected}/></Table.Cell>

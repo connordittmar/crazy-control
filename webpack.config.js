@@ -1,12 +1,5 @@
 const path = require('path');
 
-
-new webpack.DefinePlugin({
-  "process.env": {
-     NODE_ENV: JSON.stringify("development") 
-   }
-})
-
 module.exports = {
   entry: {
     index: './src/mapviewpage/index.js',

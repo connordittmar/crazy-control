@@ -14,8 +14,6 @@ class DroneBox extends Component<Props,State> {
   constructor(props) {
     super(props);
     this.state = {
-      rssi: this.subscriber_rssi.state.message.data,
-      status:this.subscriber_status.state.message.ctrl_mode,
       armchecked: false,
       selected: false,
     }
@@ -116,8 +114,8 @@ class DroneBox extends Component<Props,State> {
                 messageType={'/std_msgs/Float32'}
                 />
               </Table.Cell>
-              <Table.Cell>{this.state.rssi}</Table.Cell>
-              <Table.Cell>{this.state.status}</Table.Cell>
+              <Table.Cell></Table.Cell>
+              <Table.Cell></Table.Cell>
               <Table.Cell><Checkbox onChange={() => this.toggleSelected()} checked={this.state.selected}/></Table.Cell>
             </Table.Row>
     )

@@ -14,7 +14,6 @@ class DroneBox extends Component<Props,State> {
   constructor(props) {
     super(props);
     this.state = {
-      battery: this.subscriber_battery.state.message.data,
       rssi: this.subscriber_rssi.state.message.data,
       status:this.subscriber_status.state.message.ctrl_mode,
       armchecked: false,

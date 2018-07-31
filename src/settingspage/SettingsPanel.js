@@ -49,7 +49,6 @@ class SettingsPanel extends Component {
       key = key.replace('/','');
       key = key.replace('crazyflie','');
       drone_ids.push(parseInt(key,10));
-    }
     };
     let uniq = drone_ids => [...new Set(drone_ids)];
     this.setState({drone_ids: uniq});

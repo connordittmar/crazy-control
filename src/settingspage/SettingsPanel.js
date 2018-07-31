@@ -46,12 +46,13 @@ class SettingsPanel extends Component {
     for (var i = 0; i < count; i++) {
       var str = topics[i];
       var key = str.slice(1,12);
-      if (key != old_key) {
+      if (key != old_key && != null) {
         key = key.replace('/','');
         key = key.replace('/','');
         key = key.replace('crazyflie','');
         drone_ids.push(parseInt(key,10));
       }
+      old_key = key
     };
     this.setState({drone_ids: drone_ids});
   }

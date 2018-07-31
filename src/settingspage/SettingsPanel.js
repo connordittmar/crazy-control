@@ -51,7 +51,7 @@ class SettingsPanel extends Component {
       }
       old_key = key;
     };
-    this.setState({drone_ids: uniq});
+    this.setState({drone_ids: drone_ids});
   }
 
   renderDroneBox (i,armsignal) {

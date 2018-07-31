@@ -12,7 +12,7 @@ class SettingsPanel extends Component {
       armsignal: false,
     };
   }
-  ros = new Ros({url:'ws://192.168.1.40:8080'})
+  ros = new Ros({url:'ws://10.1.1.200:8080'})
 
   renderDroneBox (i,armsignal) {
     return <DroneBox ros={this.ros} droneid={'crazyflie'+i} armsignal={armsignal}/>

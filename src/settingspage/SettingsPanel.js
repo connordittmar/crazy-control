@@ -46,7 +46,7 @@ class SettingsPanel extends Component {
     for (var i = 0; i < count; i++) {
       var str = topics[i];
       var key = str.slice(1,12);
-      if (key != old_key && != null) {
+      if (key != old_key) {
         key = key.replace('/','');
         key = key.replace('/','');
         key = key.replace('crazyflie','');

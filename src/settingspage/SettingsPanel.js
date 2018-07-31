@@ -3,6 +3,7 @@ import {Button, Container, Table} from 'semantic-ui-react'
 import {Ros, Service, ServiceRequest} from 'roslib'
 import {Drone} from '../bin/drone'
 import DroneBox from './DroneBox'
+import Subscriber from '../rosutils/Subscriber'
 
 
 class SettingsPanel extends Component {

@@ -94,7 +94,6 @@ class SettingsPanel extends Component {
         </Table.Header>
         <Table.Body>
         {drone_component_list}
-        {this.renderDroneBox(1,armsignal)}
         <Table.Row>
           <Table.Cell/>
           <Table.Cell/>
@@ -104,6 +103,10 @@ class SettingsPanel extends Component {
         </Table.Row>
         </Table.Body>
       </Table>
+      <Subscriber
+        ros={this.ros}
+        topic='/crazyflie4/battery'
+        type='std_msgs/Float32' />
       </div>
     )
   };

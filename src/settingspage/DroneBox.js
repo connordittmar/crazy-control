@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import NonVisSubscriber from '../rosutils/NonVisSubscriber'
-import {Service, ServiceRequest, Ros} from 'roslib'
+import {Service, ServiceRequest, Ros, Topic} from 'roslib'
 import {Table, Checkbox} from 'semantic-ui-react'
 
 
@@ -19,19 +19,19 @@ class DroneBox extends Component<Props,State> {
     }
   }
 
-  arm_client = new Service({
-    ros: this.props.ros,
-    name: '/' + this.props.droneid + '/arm',
-    serviceType: '/uav_control/arm'
-  })
-
-  subscriber_status = new NonVisSubscriber({
+  status_sub = new NonVisSubscriber({
     ros: this.props.ros,
     name: '/' + this.props.droneid + '/status',
     messageType: '/uav_control/uav_status'
   })
 
-  subscriber_rssi = new NonVisSubscriber({
+  battery_sub = new NonVisSubscriber({
+    ros: this.props.ros,
+    name: '/' + this.props.droneid + '/battery',
+    messageType: '/std_msgs/Float32'
+  })
+
+  rssi_sub = new NonVisSubscriber({
     ros: this.props.ros,
     name: '/' + this.props.droneid + '/rssi',
     messageType: '/std_msgs/Float32'
@@ -52,7 +52,7 @@ class DroneBox extends Component<Props,State> {
 
   state_client = new Service({
     ros: this.props.ros,
-    name: '/' + this.props.state +'/state',
+    name: '/' + this.props.droneid +'/state',
     serviceType: '/uav_control/state'
   })
 
@@ -81,13 +81,6 @@ class DroneBox extends Component<Props,State> {
     else {
       this.docallarm();
     }
-  }
-
-  componentDidMount (){
-
-  }
-  componentWillUnmount () {
-
   }
 
   render () {

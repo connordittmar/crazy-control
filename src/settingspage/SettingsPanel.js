@@ -41,16 +41,16 @@ class SettingsPanel extends Component {
     var drone_ids = [];
     drone_strings.sort();
     count = drone_strings.length;
+    old_key = '';
     //return only unique numbers
     for (var i = 0; i < count; i++) {
-      var str = topics[i];
-      var key = str.slice(1,12);
-      key = key.replace('/','');
-      key = key.replace('/','');
-      key = key.replace('crazyflie','');
-      drone_ids.push(parseInt(key,10));
+      var str = drone_strings[i];
+      var key = str.split('/')[1].replace('crazyflie','');
+      if (key != old_key) {
+        drone_ids.push(parseInt(key,10));
+      }
+      old_key = key;
     };
-    let uniq = drone_ids => [...new Set(drone_ids)];
     this.setState({drone_ids: uniq});
   }
 

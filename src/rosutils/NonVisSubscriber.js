@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import { Ros, Topic, Message } from 'roslib'
-
+import {Table} from 'semantic-ui-react'
 type Props = {
   onRequestClose?: () => void,
   ros: Ros,
@@ -45,7 +45,9 @@ class NonVisSubscriber extends Component<Props,State> {
     });
   }
   render () {
-    return null
-  }
+    return (
+      <Table.Cell>{this.state.message}</Table.Cell>
+    );
+  };
 }
 export default NonVisSubscriber

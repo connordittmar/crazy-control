@@ -19,24 +19,6 @@ class DroneBox extends Component<Props,State> {
     }
   }
 
-  status_sub = new NonVisSubscriber({
-    ros: this.props.ros,
-    name: '/' + this.props.droneid + '/status',
-    messageType: '/uav_control/uav_status'
-  })
-
-  battery_sub = new NonVisSubscriber({
-    ros: this.props.ros,
-    name: '/' + this.props.droneid + '/battery',
-    messageType: '/std_msgs/Float32'
-  })
-
-  rssi_sub = new NonVisSubscriber({
-    ros: this.props.ros,
-    name: '/' + this.props.droneid + '/rssi',
-    messageType: '/std_msgs/Float32'
-  })
-
   arm_client = new Service({
     ros: this.props.ros,
     name: '/' + this.props.droneid + '/arm',
@@ -100,8 +82,19 @@ class DroneBox extends Component<Props,State> {
               </Table.Cell>
               <Table.Cell>{this.props.droneid}</Table.Cell>
               <Table.Cell>
+                <NonVisSubscriber
+                  ros= this.props.ros,
+                  name= '/' + this.props.droneid + '/battery',
+                  messageType= '/std_msgs/Float32'
+                />
               </Table.Cell>
-              <Table.Cell>{this.subscriber_rssi.state.message}</Table.Cell>
+              <Table.Cell>
+                <NonVisSubscriber
+                  ros= this.props.ros,
+                  name= '/' + this.props.droneid + '/rssi',
+                  messageType= '/std_msgs/Float32'
+                />
+              </Table.Cell>
               <Table.Cell></Table.Cell>
               <Table.Cell><Checkbox onChange={() => this.toggleSelected()} checked={this.state.selected}/></Table.Cell>
             </Table.Row>

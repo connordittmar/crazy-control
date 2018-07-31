@@ -47,7 +47,6 @@ class NonVisSubscriber extends Component<Props,State> {
   render () {
     return (
       <div>
-      <button>{this.state.message}</button>
       </div>
     )
   }

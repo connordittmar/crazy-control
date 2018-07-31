@@ -26,13 +26,7 @@ class SubscriberCard extends Component<Props,State> {
 
   render() {
     return (
-      <div className={'SubscriberCard'} >
-        <Card>
-          <Card.Content>
-              <Card.Header>{this.formatName(this.props.name)}</Card.Header>
-              <Card.Meta>{this.props.message.data}</Card.Meta>
-          </Card.Content>
-        </Card>
+      <div>
       </div>
     )
   }

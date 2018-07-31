@@ -25,7 +25,6 @@ class DroneBox extends Component<Props,State> {
     serviceType: '/uav_control/arm'
   })
 
-
   subscriber_status = new NonVisSubscriber({
     ros: this.props.ros,
     name: '/' + this.props.droneid + '/status',
@@ -114,12 +113,12 @@ class DroneBox extends Component<Props,State> {
                 messageType={'/std_msgs/Float32'}
                 />
               </Table.Cell>
-              <Table.Cell></Table.Cell>
+              <Table.Cell>{this.subscriber_rssi.state.message}</Table.Cell>
               <Table.Cell></Table.Cell>
               <Table.Cell><Checkbox onChange={() => this.toggleSelected()} checked={this.state.selected}/></Table.Cell>
             </Table.Row>
-    )
-  }
+    );
+  };
 }
 
 export default DroneBox

@@ -52,7 +52,7 @@ class SettingsPanel extends Component {
         key = key.replace('crazyflie','');
         drone_ids.push(parseInt(key,10));
       }
-      old_key = key
+      var old_key = key
     };
     this.setState({drone_ids: drone_ids});
   }

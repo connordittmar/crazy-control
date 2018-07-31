@@ -41,20 +41,18 @@ class SettingsPanel extends Component {
     var drone_ids = [];
     drone_strings.sort();
     count = drone_strings.length;
-    var old_key = '';
     //return only unique numbers
     for (var i = 0; i < count; i++) {
       var str = topics[i];
       var key = str.slice(1,12);
-      if (key != old_key) {
-        key = key.replace('/','');
-        key = key.replace('/','');
-        key = key.replace('crazyflie','');
-        drone_ids.push(parseInt(key,10));
-      }
-      var old_key = key
+      key = key.replace('/','');
+      key = key.replace('/','');
+      key = key.replace('crazyflie','');
+      drone_ids.push(parseInt(key,10));
+    }
     };
-    this.setState({drone_ids: drone_ids});
+    let uniq = drone_ids => [...new Set(drone_ids)];
+    this.setState({drone_ids: uniq});
   }
 
   renderDroneBox (i,armsignal) {

@@ -40,8 +40,8 @@ class SettingsPanel extends Component {
     }
     var drone_ids = [];
     drone_strings.sort();
-    count = drone_strings.length;
-    old_key = '';
+    var count = drone_strings.length;
+    var old_key = '';
     //return only unique numbers
     for (var i = 0; i < count; i++) {
       var str = drone_strings[i];

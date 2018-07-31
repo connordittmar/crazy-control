@@ -107,11 +107,6 @@ class DroneBox extends Component<Props,State> {
               </Table.Cell>
               <Table.Cell>{this.props.droneid}</Table.Cell>
               <Table.Cell>
-              <NonVisSubscriber
-                ros={this.props.ros}
-                name={'/' + this.props.droneid + '/battery'}
-                messageType={'/std_msgs/Float32'}
-                />
               </Table.Cell>
               <Table.Cell>{this.subscriber_rssi.state.message}</Table.Cell>
               <Table.Cell></Table.Cell>

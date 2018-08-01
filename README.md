@@ -1,4 +1,5 @@
 # react_skeleton
+*DEPRECATED README*    ***TODO--FIX README***
 Basic skeleton and batch file for setting up react environment on Windows.
 *NOTE: Do not commit node_modules to master. It is a complex file structure and is taken care of by npm. If you try to commit node_modules it will take forever.*
 

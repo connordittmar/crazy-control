@@ -17,7 +17,7 @@ class App extends Component {
 
   ros = this.props.ros;
 
-  componentWillMount () {
+  componentDidMount () {
     var topicsClient = new Service({
       ros: this.ros,
       name: '/rosapi/topics',
@@ -68,13 +68,13 @@ class App extends Component {
     const listItems = ids.map((id) =>
       <DroneBox key={id} ros={this.ros} droneid={'crazyflie'+id} armsignal={armsignal}  />
     );
-    return ({listItems});
+    return (listItems);
   }
 
   render () {
     const armsignal = this.state.armsignal;
     const content = this.state.content;
-    var drone_component_list = this.GenDrones(this.state.drone_ids);
+    const drone_component_list = this.GenDrones(this.state.drone_ids);
 
     return (
       <div>

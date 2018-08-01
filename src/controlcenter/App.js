@@ -18,7 +18,7 @@ class App extends Component {
   ros = this.props.ros;
 
   componentWillMount () {
-    topicsClient = new Service({
+    var topicsClient = new Service({
       ros: this.ros,
       name: '/rosapi/topics',
       serviceType: 'rosapi/Topics'

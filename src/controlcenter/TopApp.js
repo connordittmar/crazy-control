@@ -11,7 +11,7 @@ class TopApp extends Component {
     this.state = {
       connected: false,
       error: undefined,
-      url: 'ws://localhost:8080',
+      url: 'ws://10.1.1.200:8080',
     };
   }
 

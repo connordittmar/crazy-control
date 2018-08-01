@@ -57,10 +57,6 @@ class App extends Component {
     this.setState({drone_ids: drone_ids});
   }
 
-  renderDroneBox (i,armsignal) {
-    return <DroneBox ros={this.ros} droneid={'crazyflie'+i} armsignal={armsignal}/>
-  }
-
   handleArmClick () {
     this.setState({armsignal: true});
   }
@@ -69,17 +65,19 @@ class App extends Component {
     this.setState({armsignal: false});
   }
 
+  GenDrones (ids) {
+    const armsignal = this.state.armsignal
+    const ids = ids;
+    const listItems = ids.map((id) =>
+      <DroneBox key={id} ros={this.ros} droneid={'crazyflie'+id} armsignal={armsignal}  />
+    );
+    return ({listItems});
+  }
+
   render () {
     const armsignal = this.state.armsignal;
     const content = this.state.content;
-    var drone_component_list = [];
-    var num_drones = this.state.drone_ids.length;
-    for (var i = 0; i < num_drones; i++) {
-      var id = this.state.drone_ids[i];
-      drone_component_list.push(
-        <DroneBox ros={this.ros} droneid={'crazyflie'+id} armsignal={armsignal}/>
-      )
-    }
+    var drone_component_list = GenDrones(this.state.drone_ids);
 
     return (
       <div>

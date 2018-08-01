@@ -35,7 +35,7 @@ class DroneBox extends Component<Props,State> {
   state_client = new Service({
     ros: this.props.ros,
     name: '/' + this.props.droneid +'/state',
-    serviceType: '/uav_control/state'
+    serviceType: 'state'
   })
 
   state_request = new ServiceRequest({
@@ -92,7 +92,7 @@ class DroneBox extends Component<Props,State> {
               <NonVisSubscriber
                 ros={this.props.ros}
                 topic={'/' + this.props.droneid + '/status'}
-                type={'uav_control/uav_status'} />
+                type={'uav_status'} />
               <Table.Cell><Checkbox onChange={() => this.toggleSelected()} checked={this.state.selected}/></Table.Cell>
             </Table.Row>
     );

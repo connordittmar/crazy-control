@@ -17,16 +17,6 @@ class App extends Component {
 
   ros = this.props.ros;
 
-  componentDidMount () {
-    var topicsClient = new Service({
-      ros: this.ros,
-      name: '/rosapi/topics',
-      serviceType: 'rosapi/Topics'
-    });
-    var request = new ServiceRequest();
-    topicsClient.callService(request, (result)=>this.populateTable(result.topics));
-  }
-
   populateTable (topics) {
     //topics is an array of strings with all ros topics
     var drone_strings = [];
@@ -72,6 +62,13 @@ class App extends Component {
   }
 
   render () {
+    var topicsClient = new Service({
+      ros: this.ros,
+      name: '/rosapi/topics',
+      serviceType: 'rosapi/Topics'
+    });
+    var request = new ServiceRequest();
+    topicsClient.callService(request, (result)=>this.populateTable(result.topics));
     const armsignal = this.state.armsignal;
     const content = this.state.content;
     const drone_component_list = this.GenDrones(this.state.drone_ids);

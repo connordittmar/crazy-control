@@ -17,8 +17,8 @@ class App extends Component {
 
   ros = this.props.ros;
 
-  componentDidMount () {
-    var topicsClient = new Service({
+  componentWillMount () {
+    topicsClient = new Service({
       ros: this.ros,
       name: '/rosapi/topics',
       serviceType: 'rosapi/Topics'
@@ -41,7 +41,6 @@ class App extends Component {
       }
     }
     var drone_ids = [];
-    drone_strings.sort();
     var count = drone_strings.length;
     var old_key = '';
     //return only unique numbers
@@ -53,7 +52,6 @@ class App extends Component {
       }
       old_key = key;
     };
-    drone_ids.sort();
     this.setState({drone_ids: drone_ids});
   }
 
@@ -76,7 +74,7 @@ class App extends Component {
   render () {
     const armsignal = this.state.armsignal;
     const content = this.state.content;
-    var drone_component_list = GenDrones(this.state.drone_ids);
+    var drone_component_list = this.GenDrones(this.state.drone_ids);
 
     return (
       <div>

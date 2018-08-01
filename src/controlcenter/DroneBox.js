@@ -69,6 +69,8 @@ class DroneBox extends Component<Props,State> {
     const armsig = this.props.armsignal;
     const sel = this.state.selected;
     const isarmed = this.state.armchecked;
+    const ros = this.props.ros;
+    const droneid = this.props.droneid
     if (armsig==true && sel==true && isarmed==false) {
       this.docallarm();
     };
@@ -78,22 +80,22 @@ class DroneBox extends Component<Props,State> {
     return (
             <Table.Row>
               <Table.Cell collapsing>
-                <Checkbox slider onChange={() => this.handleslider()} checked={this.state.armchecked} />
+                <Checkbox slider onChange={() => this.handleslider()} checked={isarmed} />
               </Table.Cell>
-              <Table.Cell>{this.props.droneid}</Table.Cell>
+              <Table.Cell>{droneid}</Table.Cell>
               <NonVisSubscriber
-                ros={this.props.ros}
-                topic={'/' + this.props.droneid + '/battery'}
+                ros={ros}
+                topic={'/' + droneid + '/battery'}
                 type={'std_msgs/Float32'} />
               <NonVisSubscriber
-                ros={this.props.ros}
-                topic={'/' + this.props.droneid + '/rssi'}
+                ros={ros}
+                topic={'/' + droneid + '/rssi'}
                 type={'std_msgs/Float32'} />
               <NonVisSubscriber
-                ros={this.props.ros}
-                topic={'/' + this.props.droneid + '/status'}
+                ros={ros}
+                topic={'/' + droneid + '/status'}
                 type={'uav_status'} />
-              <Table.Cell><Checkbox onChange={() => this.toggleSelected()} checked={this.state.selected}/></Table.Cell>
+              <Table.Cell><Checkbox onChange={() => this.toggleSelected()} checked={isarmed}/></Table.Cell>
             </Table.Row>
     );
   };

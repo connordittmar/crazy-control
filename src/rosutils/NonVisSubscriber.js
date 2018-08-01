@@ -23,10 +23,7 @@ class NonVisSubscriber extends Component<Props,State> {
   })
 
   state = {
-    autoscroll: true,
-    index: -1,
     message: {},
-    messageCount: 0,
   }
 
   componentDidMount = () => {
@@ -40,7 +37,6 @@ class NonVisSubscriber extends Component<Props,State> {
     this.subscriber.subscribe((message: Message) => {
       this.setState(prevState => ({
         message: message,
-        messageCount: prevState.messageCount += 1,
       }));
     });
   }

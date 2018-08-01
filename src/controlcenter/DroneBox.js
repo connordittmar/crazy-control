@@ -94,7 +94,7 @@ class DroneBox extends Component<Props,State> {
               <NonVisSubscriber
                 ros={ros}
                 topic={'/' + droneid + '/status'}
-                type={'uav_status'} />
+                type={'battery'} />
               <Table.Cell><Checkbox onChange={() => this.toggleSelected()} checked={isarmed}/></Table.Cell>
             </Table.Row>
     );

@@ -62,16 +62,17 @@ class App extends Component {
   }
 
   render () {
-    var topicsClient = new Service({
-      ros: this.ros,
-      name: '/rosapi/topics',
-      serviceType: 'rosapi/Topics'
-    });
-    var request = new ServiceRequest();
-    topicsClient.callService(request, (result)=>this.populateTable(result.topics));
+    //var topicsClient = new Service({
+    //  ros: this.ros,
+    //  name: '/rosapi/topics',
+    //  serviceType: 'rosapi/Topics'
+    //});
+    //var request = new ServiceRequest();
+    //topicsClient.callService(request, (result)=>this.populateTable(result.topics));
     const armsignal = this.state.armsignal;
     const content = this.state.content;
-    const drone_component_list = this.GenDrones(this.state.drone_ids);
+    const droneids = ['1','2','3','4','5','6','7','8','9','10'];
+    const drone_component_list = this.GenDrones(droneids);
 
     return (
       <div>

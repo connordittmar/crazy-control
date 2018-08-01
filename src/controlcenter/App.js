@@ -99,7 +99,7 @@ class App extends Component {
         </Table.Body>
       </Table>
       <Subscriber
-        ros=this.ros
+        ros={this.ros}
         topic='/crazyflie14/battery'
         type='std_msgs/Float32'
       />

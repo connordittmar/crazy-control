@@ -67,7 +67,6 @@ class App extends Component {
 
   GenDrones (ids) {
     const armsignal = this.state.armsignal
-    const ids = ids;
     const listItems = ids.map((id) =>
       <DroneBox key={id} ros={this.ros} droneid={'crazyflie'+id} armsignal={armsignal}  />
     );

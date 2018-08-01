@@ -22,7 +22,7 @@ class DroneBox extends Component<Props,State> {
   arm_client = new Service({
     ros: this.props.ros,
     name: '/' + this.props.droneid + '/arm',
-    serviceType: '/uav_control/arm'
+    serviceType: 'arm'
   })
 
   arm_request = new ServiceRequest({

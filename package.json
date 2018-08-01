@@ -1,35 +1,31 @@
 {
-  "name": "react_skeleton",
+  "name": "crazy_control_center",
   "version": "1.0.0",
-  "description": "Basic skeleton and batch file for setting up react environment on Windows.\r *NOTE: DO NOT COMMMIT node_modules to master. I am new to node.js and haven't figured out how to only keep our dependencies on the repository.*",
+  "description": "Web Interface for controlling Crazyflies with OptiTrack and ROS.",
   "main": "webpack.config.js",
   "scripts": {
     "test": "webpack --config test.webpack.config.js",
-    "build": "webpack"
+    "build": "webpack --mode development",
+    "prod": "webpack --mode production"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/connordittmar/react_skeleton.git"
+    "url": "git+https://github.com/connordittmar/crazy_control.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/connordittmar/react_skeleton/issues"
+    "url": "https://github.com/connordittmar/crazy_control/issues"
   },
-  "homepage": "https://github.com/connordittmar/react_skeleton#readme",
+  "homepage": "https://github.com/connordittmar/crazy_control#readme",
   "dependencies": {
     "leaflet": "^1.3.3",
-    "mapbox-gl": "^0.47.0",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
-    "react-leaflet": "^2.0.0",
-    "react-leaflet-control": "^1.4.1",
-    "react-mapbox-gl": "^3.8.0",
     "semantic-ui-react": "^0.82.0"
   },
   "devDependencies": {
-    "axios": "^0.18.0",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.3",
     "babel-loader": "^7.1.5",

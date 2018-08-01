@@ -2,8 +2,7 @@ const path = require('path');
 
 module.exports = {
   entry: {
-    index: './src/mapviewpage/index.js',
-    settings: './src/settingspage/settings.js'
+    index: './src/controlcenter/index.js'
   },
   output: {
     filename: '[name].js',

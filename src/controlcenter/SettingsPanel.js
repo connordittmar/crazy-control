@@ -104,10 +104,6 @@ class SettingsPanel extends Component {
         </Table.Row>
         </Table.Body>
       </Table>
-      <Subscriber
-        ros={this.ros}
-        topic='/crazyflie4/battery'
-        type='std_msgs/Float32' />
       </div>
     )
   };

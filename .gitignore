@@ -1,2 +1,4 @@
-dist
+dist/[a-f]*
+dist/[0-9]*
+dist/*.js
 node_modules

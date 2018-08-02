@@ -33,12 +33,12 @@ class DroneBox extends Component<Props,State> {
 
   takeoff_request = new ServiceRequest({
     groupMask: 0,
-    height: 1.0,
-    duration: 3
+    height: this.props.takeoff_height,
+    duration: this.props.takeoff_duration,
   })
   land_request = new ServiceRequest({
     groupMask: 0,
-    height: 0
+    height: 0,
     duration: 3
   })
 

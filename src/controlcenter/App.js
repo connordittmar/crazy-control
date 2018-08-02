@@ -9,6 +9,8 @@ import Subscriber from '../rosutils/Subscriber'
 class App extends Component {
   constructor(props) {
     super(props);
+    this.updateTakeoffHeight = this.updateTakeoffHeight.bind(this);
+    this.updateTakeoffDuration = this.updateTakeoffDuration.bind(this);
     this.state = {
       armsignal: false,
       drone_ids: [],
@@ -45,6 +47,14 @@ class App extends Component {
     this.setState({drone_ids: drone_ids});
   }
 
+  updateTakeoffHeight (e) {
+    this.setState({takeoff_height: e.target.value })
+  }
+
+  updateTakeoffDuration (e) {
+    this.setState({takeoff_duration: e.target.value})
+  }
+
   handleArmClick () {
     this.setState({armsignal: true});
   }
@@ -54,9 +64,17 @@ class App extends Component {
   }
 
   GenDrones (ids) {
-    const armsignal = this.state.armsignal
+    const armsignal = this.state.armsignal;
+    const takeoff_height = this.state.takeoff_height;
+    const takeoff_duration = this.state.takeoff_duration;
     const listItems = ids.map((id) =>
-      <DroneBox key={id} ros={this.ros} droneid={'crazyflie'+id} armsignal={armsignal}  />
+      <DroneBox
+        key={id}
+        ros={this.ros}
+        droneid={'crazyflie'+id}
+        armsignal={armsignal}
+        takeoff_height={takeoff_height}
+        takeoff_duration={takeoff_duration}  />
     );
     return (listItems);
   }
@@ -69,6 +87,8 @@ class App extends Component {
     //});
     //var request = new ServiceRequest();
     //topicsClient.callService(request, (result)=>this.populateTable(result.topics));
+    const takeoff_height = this.state.takeoff_height;
+    const takeoff_duration = this.state.takeoff_duration;
     const armsignal = this.state.armsignal;
     const content = this.state.content;
     const droneids = ['1','2','3','4','5','6','7','8','9','10'];
@@ -79,7 +99,7 @@ class App extends Component {
       <Table compact celled selectable definition>
         <Table.Header>
           <Table.Row>
-            <Table.HeaderCell>Armed?</Table.HeaderCell>
+            <Table.HeaderCell>Takeoff/Land</Table.HeaderCell>
             <Table.HeaderCell>Drone #</Table.HeaderCell>
             <Table.HeaderCell>Battery</Table.HeaderCell>
             <Table.HeaderCell>Rssi</Table.HeaderCell>
@@ -90,11 +110,11 @@ class App extends Component {
         <Table.Body>
         {drone_component_list}
         <Table.Row>
+          <Table.Cell><Input placeholder="Takeoff Height" onChange={() => this.updateTakeoffHeight()}/></Table.Cell>
+          <Table.Cell><Input placeholder="Takeoff Duration" onChange={() => this.updateTakeoffDuration()}/></Table.Cell>
           <Table.Cell/>
-          <Table.Cell/>
-          <Table.Cell/>
-          <Table.Cell><Button content="Arm Selected" onClick={() => this.handleArmClick()}/></Table.Cell>
-          <Table.Cell><Button content="Disarm Selected" onClick={() => this.handleDisarmClick()}/></Table.Cell>
+          <Table.Cell><Button content="Takeoff Selected" onClick={() => this.handleArmClick()}/></Table.Cell>
+          <Table.Cell><Button content="Land Selected" onClick={() => this.handleDisarmClick()}/></Table.Cell>
         </Table.Row>
         </Table.Body>
       </Table>

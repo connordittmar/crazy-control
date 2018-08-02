@@ -19,22 +19,32 @@ class DroneBox extends Component<Props,State> {
     }
   }
 
-  arm_client = new Service({
+  takeoff_client = new Service({
     ros: this.props.ros,
-    name: '/' + this.props.droneid + '/arm',
-    serviceType: 'arm'
+    name: '/' + this.props.droneid + '/takeoff',
+    serviceType: 'Takeoff'
   })
 
-  arm_request = new ServiceRequest({
-    arm: 1,
+  land_client = new Service({
+    ros: this.props.ros,
+    name: '/' + this.props.droneid + '/land',
+    serviceType: 'Land'
   })
-  disarm_request = new ServiceRequest({
-    arm: 0,
+
+  takeoff_request = new ServiceRequest({
+    groupMask: 0,
+    height: 1.0,
+    duration: 3
+  })
+  land_request = new ServiceRequest({
+    groupMask: 0,
+    height: 0
+    duration: 3
   })
 
   state_client = new Service({
     ros: this.props.ros,
-    name: '/' + this.props.droneid +'/state',
+    name: '/' + this.props.droneid +'/takeoff',
     serviceType: 'state'
   })
 
@@ -47,12 +57,12 @@ class DroneBox extends Component<Props,State> {
   }
 
   docallarm  ()  {
-    this.arm_client.callService(this.arm_request, (result) => console.log('Arming...'));
+    this.takeoff_client.callService(this.takeoff_request, (result) => console.log('Takeoff...'));
     this.setState({armchecked: true});
   }
 
   docalldisarm () {
-    this.arm_client.callService(this.disarm_request, (result) => console.log('Disarming...'));
+    this.land_client.callService(this.land_request, (result) => console.log('Landing...'));
     this.setState({armchecked: false});
   }
 

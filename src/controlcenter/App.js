@@ -118,11 +118,6 @@ class App extends Component {
         </Table.Body>
       </Table>
       <div>
-      <Subscriber
-        ros={this.ros}
-        topic='/crazyflie14/battery'
-        type='std_msgs/Float32'
-      />
       </div>
       </div>
 

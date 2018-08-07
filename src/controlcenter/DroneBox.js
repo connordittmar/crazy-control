@@ -35,8 +35,8 @@ class DroneBox extends Component<Props,State> {
     groupMask: 0,
     height: toFloat(this.props.takeoff_height),
     duration: {
-      sec: toFloat(this.props.takeoff_duration),
-      nsec: 0
+      secs: toFloat(this.props.takeoff_duration),
+      nsecs: 0
     },
   })
 
@@ -44,8 +44,8 @@ class DroneBox extends Component<Props,State> {
     groupMask: 0,
     height: 0,
     duration: {
-      sec: 2,
-      nsec: 0
+      secs: 2,
+      nsecs: 0
     },
   })
 

@@ -1,7 +1,6 @@
 import React, {Component} from 'react'
 import {Button, Container, Table, Menu, Input, Message} from 'semantic-ui-react'
 import {Ros, Service, ServiceRequest} from 'roslib'
-import {Drone} from '../bin/drone'
 import DroneBox from './DroneBox'
 import Subscriber from '../rosutils/Subscriber'
 
